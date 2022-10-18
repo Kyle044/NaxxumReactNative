@@ -2,12 +2,17 @@ import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { withNavigationFocus } from "react-navigation";
+import { MaterialIcons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 import {
   StyleSheet,
   Text,
   View,
   FlatList,
-  TouchableOpacity
+  TouchableOpacity,
+  TextInput,
+  Button
 } from "react-native";
 
 import Card from "../shared/card";
@@ -17,7 +22,7 @@ export default withNavigationFocus(function Admin({ navigation }) {
   useEffect(() => {
     if (navigation.isFocused()) {
       axios
-        .get("http://192.168.31.60:8089/api/getAdmin")
+        .get("http://10.0.2.2:8999/api/getAdmin")
         .then((res) => {
           setAdmins(res.data.data);
         })
@@ -29,6 +34,43 @@ export default withNavigationFocus(function Admin({ navigation }) {
 
   return (
     <View style={styles.master}>
+      <View style={styles.btnGrp}>
+        <View style={styles.verticalAlign}>
+          <MaterialIcons
+            name="add-to-photos"
+            size={60}
+            color="white"
+            style={styles.circle}
+          />
+          <Text>New</Text>
+        </View>
+        <View style={styles.verticalAlign}>
+          <AntDesign
+            name="contacts"
+            size={60}
+            color="white"
+            style={styles.circle}
+          />
+          <Text>Phone Book</Text>
+        </View>
+        <View style={styles.verticalAlign}>
+          <FontAwesome
+            name="envelope-o"
+            size={60}
+            color="white"
+            style={styles.circle}
+          />
+          <Text>Email</Text>
+        </View>
+      </View>
+      <View
+        style={{
+          borderBottomColor: "black",
+          borderBottomWidth: StyleSheet.hairlineWidth
+        }}
+      />
+      <TextInput style={styles.input} placeholder="Search Contact" />
+      <Button title="Search" />
       {admins ? (
         <FlatList
           keyExtractor={(item) => item.id}
@@ -66,7 +108,31 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   master: {
-    marginVertical: 50,
+    marginVertical: 20,
     marginHorizontal: 30
+  },
+  btnGrp: {
+    marginVertical: 20,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center"
+  },
+  circle: {
+    backgroundColor: "darkblue",
+    borderRadius: 70,
+    padding: 15
+  },
+  verticalAlign: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "#777",
+    padding: 8,
+    marginVertical: 10,
+    width: "100%",
+    borderRadius: 4
   }
 });

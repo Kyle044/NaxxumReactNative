@@ -13,7 +13,7 @@ import {
   Keyboard,
   LogBox
 } from "react-native";
-import { ROUTE_KEY } from "@env";
+
 export default function Login({ navigation }) {
   const [state, setState] = useState({ username: "", password: "" });
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function Login({ navigation }) {
   const login = () => {
     axios
       .post(
-        "http://192.168.31.60:8089/api/login",
+        "http://10.0.2.2:8999/api/login",
         {
           username: state.username,
           password: state.password

@@ -9,9 +9,7 @@ const screens = {
 
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: () => (
-          <Header navigation={navigation} title="Edit Information" />
-        ),
+        headerTitle: () => <Header navigation={navigation} title="Profile" />,
         headerLeft: () => null
       };
     }

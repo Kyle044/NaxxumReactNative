@@ -11,7 +11,9 @@ const screens = {
 
     navigationOptions: ({ navigation }) => {
       return {
-        headerTitle: () => <Header navigation={navigation} title="Dashboard" />,
+        headerTitle: () => (
+          <Header navigation={navigation} title="Add Contacts" />
+        ),
         headerLeft: () => null
       };
     }

@@ -4,6 +4,7 @@ import Dashboard from "./dashStack";
 import Account from "./editStack";
 import Header from "../shared/header";
 import React from "react";
+import Logout from "../screens/logout";
 const DrawerNavigatorConfig = {
   navigationOptions: {
     headerStyle: {
@@ -33,6 +34,9 @@ const RootDrawerNavigator = createDrawerNavigator(
     },
     Account: {
       screen: Account
+    },
+    Logout: {
+      screen: Logout
     }
   },
   DrawerNavigatorConfig
